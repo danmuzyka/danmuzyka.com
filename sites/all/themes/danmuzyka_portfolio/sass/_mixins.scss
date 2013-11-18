@@ -35,3 +35,25 @@
     @include element-invisible-off;
   }
 }
+
+/**
+ * Custom mixins
+ */
+
+// Button-style link
+@mixin button-link($bg-color, $button-font-size: $sb-font-size, $arrow: true, $button-style: "matte") {
+  color: $foreground-color;
+  //@include button($bg: $portfolio-color, $radius: $global-rounded);
+  @include sassy-button($button-style, $border-radius: $global-rounded, $font-size: $button-font-size, $first-color: $bg-color, $text-style: inset);
+  @if $arrow {
+    &:after {
+      content: ">";
+      margin-left: 0.75em;
+    }
+  }
+}
+
+%skills-list {
+  line-height: 1.6em;
+  margin: 0 0 1em;
+}

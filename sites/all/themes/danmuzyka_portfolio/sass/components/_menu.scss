@@ -1,0 +1,82 @@
+/**
+ * @file
+ * Custom menu styles.
+ */
+//h1, h2, h3, h4, h5, h6 {
+//  //background-color: rgba($primary-color, 0.5);
+//  background-color: hsl(hue($primary-color), saturation($primary-color), lightness($primary-color));
+//  //background-image: url('../images/texturetastic_gray.png');
+//  @include border-radius(0.125em);
+//  color: $foreground-color;
+//  padding: 0.125em 0.25em;
+//  //@include text-shadow(0.125em, 0.0625em, 0.125em, $body-font-color);
+//  @include text-shadow(0.0625em 0.0625em 0.0625em #222222);
+//}
+
+// Menu on home page
+.front {
+  ul.primary-links {
+    list-style-type: none;
+    padding: 0;
+
+    a {
+      @include button-link($primary-color, $button-font-size: 1.25em, $arrow: false, $button-style: "simple");
+      display: block;
+      margin: 0 auto 0.5em;
+      text-align: center;
+      width: 80%;
+
+      &.portfolio-section {
+        @include button-link($portfolio-color, $button-font-size: 1.25em, $arrow: false, $button-style: "simple");
+        display: block;
+      }
+      &.resume-section {
+        @include button-link($resume-color, $button-font-size: 1.25em, $arrow: false, $button-style: "simple");
+        display: block;
+      }
+      &.skills-section {
+        @include button-link($skills-color, $button-font-size: 1.25em, $arrow: false, $button-style: "simple");
+        display: block;
+      }
+      &.contact-section {
+        @include button-link($contact-color, $button-font-size: 1.25em, $arrow: false, $button-style: "simple");
+        display: block;
+      }
+    }
+  }
+}
+
+// Menu on inside pages
+nav#main-menu a {
+  @include button-link($primary-color, $button-font-size: 0.9em, $arrow: false, $button-style: "simple");
+  &.portfolio-section {
+    @include button-link($portfolio-color, $button-font-size: 0.9em, $arrow: false, $button-style: "simple");
+  }
+  &.resume-section {
+    @include button-link($resume-color, $button-font-size: 0.9em, $arrow: false, $button-style: "simple");
+  }
+  &.skills-section {
+    @include button-link($skills-color, $button-font-size: 0.9em, $arrow: false, $button-style: "simple");
+  }
+  &.contact-section {
+    @include button-link($contact-color, $button-font-size: 0.9em, $arrow: false, $button-style: "simple");
+  }
+}
+
+nav.breadcrumb {
+  a {
+    color: $primary-color;
+    .portfolio-section & {
+      color: $portfolio-color;
+    }
+    .skills-section & {
+      color: $skills-color;
+    }
+    .resume-section & {
+      color: $resume-color;
+    }
+    .contact-section & {
+      color: $contact-color;
+    }
+  }
+}

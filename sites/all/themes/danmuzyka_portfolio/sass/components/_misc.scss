@@ -182,7 +182,7 @@
 /**
  * Titles.
  */
-.page__title,          /* The title of the page. */
+//.page__title,          /* The title of the page. */
 .node__title,          /* Title of a piece of content when it is given in a list of content. */
 .block__title,         /* Block title. */
 .comments__title,      /* Comment section heading. */
@@ -191,6 +191,10 @@
   margin: 0;
 }
 
+.page__title,
+h1.page__title {          /* The title of the page. */
+  margin: 0.5em 0 0.25em;
+}
 /**
  * Messages.
  */
@@ -815,4 +819,50 @@ tr.selected td {
  */
 ul, ol {
   padding: 0 0 0 1em;
+}
+
+/**
+ * Links
+ */
+.portfolio-section {
+  a {
+    color: $portfolio-color;
+  }
+}
+
+.resume-section {
+  a {
+    color: $resume-color;
+  }
+}
+
+.skills-section {
+  a {
+    color: $skills-color;
+  }
+}
+
+.contact-section {
+  a {
+    color: $contact-color;
+  }
+}
+
+/**
+ * Buttons
+ */
+input[type="submit"] {
+  @include button-link($primary-color, $button-font-size: 0.9em);
+  .portfolio-section & {
+    @include button-link($portfolio-color, $button-font-size: 0.9em);
+  }
+  .resume-section & {
+    @include button-link($resume-color, $button-font-size: 0.9em);
+  }
+  .skills-section & {
+    @include button-link($skills-color, $button-font-size: 0.9em);
+  }
+  .contact-section & {
+    @include button-link($contact-color, $button-font-size: 0.9em);
+  }
 }

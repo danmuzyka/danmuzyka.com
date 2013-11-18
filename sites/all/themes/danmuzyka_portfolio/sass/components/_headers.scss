@@ -7,19 +7,39 @@
 }
 
 h1, h2, h3, h4, h5, h6 {
-  //background-color: rgba($primary-color, 0.5);
-  background-color: hsl(hue($primary-color), saturation($primary-color), lightness($primary-color));
-  //background-image: url('../images/texturetastic_gray.png');
-  @include border-radius(0.125em);
-  color: $foreground-color;
-  padding: 0.125em 0.25em;
-  //@include text-shadow(0.125em, 0.0625em, 0.125em, $body-font-color);
-  @include text-shadow(0.0625em 0.0625em 0.0625em #222222);
+  color: $primary-color;
+  margin: 0.5em 0 0;
+  //@include text-shadow(0.0125em 0.0125em 0.0625em #222222);
+  @include text-shadow(0 0 0.025em #222222);
+  .portfolio-section & {
+    color: $portfolio-color;
+    a {
+      color: $portfolio-color;
+    }
+  }
+  .skills-section & {
+    color: $skills-color;
+    a {
+      color: $skills-color;
+    }
+  }
+  .resume-section & {
+    color: $resume-color;
+    a {
+      color: $resume-color;
+    }
+  }
+  .contact-section & {
+    color: $contact-color;
+    a {
+      color: $contact-color;
+    }
+  }
 }
 
 .header__name-and-slogan {
   h1, h2, h3, h4, h5, h6 {
-    background: none transparent;
+    color: $header-font-color;
     font-family: "Disco Regular", $base-font-family;
     font-size: 2.5em;
     padding: 0;

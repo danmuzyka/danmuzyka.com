@@ -58,6 +58,9 @@
   font-style: italic;
 }
 
+/**
+ * Custom mixins
+ */
 /* HTML element (SMACSS base) rules */
 /**
  * @file
@@ -2095,13 +2098,13 @@ button:hover, button:focus, .button:hover, .button:focus {
 }
 /* line 176, ../../../../../../../../../Users/danmuzyka/.rvm/gems/ruby-1.9.3-p448@global/gems/zurb-foundation-4.3.1/scss/foundation/components/_buttons.scss */
 button.secondary, .button.secondary {
-  background-color: #091e58;
-  border-color: #040e2a;
+  background-color: #0d2c82;
+  border-color: #081c54;
   color: #dedede;
 }
 /* line 122, ../../../../../../../../../Users/danmuzyka/.rvm/gems/ruby-1.9.3-p448@global/gems/zurb-foundation-4.3.1/scss/foundation/components/_buttons.scss */
 button.secondary:hover, button.secondary:focus, .button.secondary:hover, .button.secondary:focus {
-  background-color: #040e2a;
+  background-color: #081c54;
 }
 /* line 133, ../../../../../../../../../Users/danmuzyka/.rvm/gems/ruby-1.9.3-p448@global/gems/zurb-foundation-4.3.1/scss/foundation/components/_buttons.scss */
 button.secondary:hover, button.secondary:focus, .button.secondary:hover, .button.secondary:focus {
@@ -2199,8 +2202,8 @@ button.disabled:hover, button.disabled:focus, button[disabled]:hover, button[dis
 }
 /* line 189, ../../../../../../../../../Users/danmuzyka/.rvm/gems/ruby-1.9.3-p448@global/gems/zurb-foundation-4.3.1/scss/foundation/components/_buttons.scss */
 button.disabled.secondary, button[disabled].secondary, .button.disabled.secondary, .button[disabled].secondary {
-  background-color: #091e58;
-  border-color: #040e2a;
+  background-color: #0d2c82;
+  border-color: #081c54;
   color: #dedede;
   cursor: default;
   opacity: 0.6;
@@ -2209,7 +2212,7 @@ button.disabled.secondary, button[disabled].secondary, .button.disabled.secondar
 }
 /* line 122, ../../../../../../../../../Users/danmuzyka/.rvm/gems/ruby-1.9.3-p448@global/gems/zurb-foundation-4.3.1/scss/foundation/components/_buttons.scss */
 button.disabled.secondary:hover, button.disabled.secondary:focus, button[disabled].secondary:hover, button[disabled].secondary:focus, .button.disabled.secondary:hover, .button.disabled.secondary:focus, .button[disabled].secondary:hover, .button[disabled].secondary:focus {
-  background-color: #040e2a;
+  background-color: #081c54;
 }
 /* line 133, ../../../../../../../../../Users/danmuzyka/.rvm/gems/ruby-1.9.3-p448@global/gems/zurb-foundation-4.3.1/scss/foundation/components/_buttons.scss */
 button.disabled.secondary:hover, button.disabled.secondary:focus, button[disabled].secondary:hover, button[disabled].secondary:focus, .button.disabled.secondary:hover, .button.disabled.secondary:focus, .button[disabled].secondary:hover, .button[disabled].secondary:focus {
@@ -2217,7 +2220,7 @@ button.disabled.secondary:hover, button.disabled.secondary:focus, button[disable
 }
 /* line 146, ../../../../../../../../../Users/danmuzyka/.rvm/gems/ruby-1.9.3-p448@global/gems/zurb-foundation-4.3.1/scss/foundation/components/_buttons.scss */
 button.disabled.secondary:hover, button.disabled.secondary:focus, button[disabled].secondary:hover, button[disabled].secondary:focus, .button.disabled.secondary:hover, .button.disabled.secondary:focus, .button[disabled].secondary:hover, .button[disabled].secondary:focus {
-  background-color: #091e58;
+  background-color: #0d2c82;
 }
 /* line 190, ../../../../../../../../../Users/danmuzyka/.rvm/gems/ruby-1.9.3-p448@global/gems/zurb-foundation-4.3.1/scss/foundation/components/_buttons.scss */
 button.disabled.success, button[disabled].success, .button.disabled.success, .button[disabled].success {
@@ -3028,7 +3031,7 @@ label.error {
 }
 /* line 79, ../../../../../../../../../Users/danmuzyka/.rvm/gems/ruby-1.9.3-p448@global/gems/zurb-foundation-4.3.1/scss/foundation/components/_split-buttons.scss */
 .split.button.secondary span {
-  border-left-color: #020613;
+  border-left-color: #06143c;
 }
 /* line 142, ../../../../../../../../../Users/danmuzyka/.rvm/gems/ruby-1.9.3-p448@global/gems/zurb-foundation-4.3.1/scss/foundation/components/_split-buttons.scss */
 .split.button.secondary span:before {
@@ -4389,11 +4392,11 @@ label.error {
 }
 /* line 253, ../../../../../../../../../Users/danmuzyka/.rvm/gems/ruby-1.9.3-p448@global/gems/zurb-foundation-4.3.1/scss/foundation/components/_top-bar.scss */
 .top-bar-section ul li > a.button.secondary {
-  background: #091e58;
+  background: #0d2c82;
 }
 /* line 255, ../../../../../../../../../Users/danmuzyka/.rvm/gems/ruby-1.9.3-p448@global/gems/zurb-foundation-4.3.1/scss/foundation/components/_top-bar.scss */
 .top-bar-section ul li > a.button.secondary.hover {
-  background: #040e2a;
+  background: #081c54;
 }
 /* line 259, ../../../../../../../../../Users/danmuzyka/.rvm/gems/ruby-1.9.3-p448@global/gems/zurb-foundation-4.3.1/scss/foundation/components/_top-bar.scss */
 .top-bar-section ul li > a.button.success {
@@ -5593,8 +5596,8 @@ label.error {
 }
 /* line 104, ../../../../../../../../../Users/danmuzyka/.rvm/gems/ruby-1.9.3-p448@global/gems/zurb-foundation-4.3.1/scss/foundation/components/_alert-boxes.scss */
 .alert-box.secondary {
-  background-color: #091e58;
-  border-color: #040e2a;
+  background-color: #0d2c82;
+  border-color: #081c54;
   color: white;
 }
 
@@ -5608,8 +5611,8 @@ label.error {
   list-style: none;
   border-style: solid;
   border-width: 1px;
-  background-color: #0b266f;
-  border-color: #061641;
+  background-color: #0f3499;
+  border-color: #0b246b;
   -webkit-border-radius: 3px;
   border-radius: 3px;
 }
@@ -5995,7 +5998,7 @@ kbd {
 }
 /* line 82, ../../../../../../../../../Users/danmuzyka/.rvm/gems/ruby-1.9.3-p448@global/gems/zurb-foundation-4.3.1/scss/foundation/components/_labels.scss */
 .label.secondary {
-  background-color: #091e58;
+  background-color: #0d2c82;
   color: white;
 }
 
@@ -6227,7 +6230,7 @@ ul.pagination li {
 }
 /* line 57, ../../../../../../../../../Users/danmuzyka/.rvm/gems/ruby-1.9.3-p448@global/gems/zurb-foundation-4.3.1/scss/foundation/components/_progress-bars.scss */
 .progress.secondary .meter {
-  background: #091e58;
+  background: #0d2c82;
   height: 100%;
   display: block;
 }
@@ -6901,11 +6904,11 @@ a.th {
 /**
  * Mobile layout
  */
-/* line 106, ../sass/layouts/_responsive.scss */
+/* line 110, ../sass/layouts/_responsive.scss */
 #header .logo {
   display: none;
 }
-/* line 109, ../sass/layouts/_responsive.scss */
+/* line 113, ../sass/layouts/_responsive.scss */
 #header .header__name-and-slogan {
   position: relative;
   padding-left: 0.9375em;
@@ -6913,7 +6916,7 @@ a.th {
   float: left;
 }
 
-/* line 116, ../sass/layouts/_responsive.scss */
+/* line 120, ../sass/layouts/_responsive.scss */
 #content,
 .region-sidebar-first,
 .region-sidebar-second {
@@ -6927,7 +6930,7 @@ a.th {
  * Column layout for anything above mobile.
  */
 @media only screen and (min-width: 768px) {
-  /* line 126, ../sass/layouts/_responsive.scss */
+  /* line 130, ../sass/layouts/_responsive.scss */
   #header .logo {
     display: block;
     position: relative;
@@ -6936,7 +6939,7 @@ a.th {
     width: 16.66667%;
     float: left;
   }
-  /* line 130, ../sass/layouts/_responsive.scss */
+  /* line 134, ../sass/layouts/_responsive.scss */
   #header .header__name-and-slogan {
     position: relative;
     padding-left: 0.9375em;
@@ -6944,7 +6947,7 @@ a.th {
     width: 100%;
     float: left;
   }
-  /* line 134, ../sass/layouts/_responsive.scss */
+  /* line 138, ../sass/layouts/_responsive.scss */
   #header.with-logo.with-site-name .header__name-and-slogan {
     position: relative;
     padding-left: 0.9375em;
@@ -6956,11 +6959,11 @@ a.th {
   /**
    * The layout when there are no sidebars.
    */
-  /* line 143, ../sass/layouts/_responsive.scss */
+  /* line 147, ../sass/layouts/_responsive.scss */
   .no-sidebars {
     /* Span 10 columns, starting in 2nd column from left. */
   }
-  /* line 145, ../sass/layouts/_responsive.scss */
+  /* line 149, ../sass/layouts/_responsive.scss */
   .no-sidebars #content {
     position: relative;
     padding-left: 0.9375em;
@@ -6972,12 +6975,12 @@ a.th {
   /**
    * The layout when there is only one sidebar, the left one.
    */
-  /* line 153, ../sass/layouts/_responsive.scss */
+  /* line 157, ../sass/layouts/_responsive.scss */
   .sidebar-first {
     /* Span 10 columns, starting in 2nd column from left. */
     /* Span 2 columns, starting in 1st column from left. */
   }
-  /* line 155, ../sass/layouts/_responsive.scss */
+  /* line 159, ../sass/layouts/_responsive.scss */
   .sidebar-first #content {
     position: relative;
     padding-left: 0.9375em;
@@ -6987,7 +6990,7 @@ a.th {
     right: auto;
     float: left;
   }
-  /* line 160, ../sass/layouts/_responsive.scss */
+  /* line 164, ../sass/layouts/_responsive.scss */
   .sidebar-first .region-sidebar-first {
     position: relative;
     padding-left: 0.9375em;
@@ -7001,12 +7004,12 @@ a.th {
   /**
    * The layout when there is only one sidebar, the right one.
    */
-  /* line 168, ../sass/layouts/_responsive.scss */
+  /* line 172, ../sass/layouts/_responsive.scss */
   .sidebar-second {
     /* Span 10 columns, starting in 1st column from left. */
     /* Span 2 column, starting in 5th column from left. */
   }
-  /* line 170, ../sass/layouts/_responsive.scss */
+  /* line 174, ../sass/layouts/_responsive.scss */
   .sidebar-second #content {
     position: relative;
     padding-left: 0.9375em;
@@ -7014,7 +7017,7 @@ a.th {
     width: 75%;
     float: left;
   }
-  /* line 175, ../sass/layouts/_responsive.scss */
+  /* line 179, ../sass/layouts/_responsive.scss */
   .sidebar-second .region-sidebar-second {
     position: relative;
     padding-left: 0.9375em;
@@ -7026,13 +7029,13 @@ a.th {
   /**
    * The layout when there are two sidebars.
    */
-  /* line 183, ../sass/layouts/_responsive.scss */
+  /* line 187, ../sass/layouts/_responsive.scss */
   .two-sidebars {
     /* Span 3 columns, starting in 2nd column from left. */
     /* Span 1 column, starting in 1st column from left. */
     /* Span 1 column, starting in 5th column from left. */
   }
-  /* line 185, ../sass/layouts/_responsive.scss */
+  /* line 189, ../sass/layouts/_responsive.scss */
   .two-sidebars #content {
     position: relative;
     padding-left: 0.9375em;
@@ -7042,7 +7045,7 @@ a.th {
     right: auto;
     float: left;
   }
-  /* line 190, ../sass/layouts/_responsive.scss */
+  /* line 194, ../sass/layouts/_responsive.scss */
   .two-sidebars .region-sidebar-first {
     position: relative;
     padding-left: 0.9375em;
@@ -7052,7 +7055,7 @@ a.th {
     left: auto;
     float: left;
   }
-  /* line 195, ../sass/layouts/_responsive.scss */
+  /* line 199, ../sass/layouts/_responsive.scss */
   .two-sidebars .region-sidebar-second {
     position: relative;
     padding-left: 0.9375em;

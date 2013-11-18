@@ -2,6 +2,7 @@
  * @file
  * Styles for portfolio nodes.
  */
+.views-field-field-portfolio-screenshot,
 .field-name-field-portfolio-screenshot {
   border: 1px solid #CCC;
   @include box-shadow(#333 0.125em 0.125em 0.25em);
@@ -9,18 +10,31 @@
   padding: 0.5em;
 }
 
+.views-field-field-portfolio-screenshot {
+  float: left;
+  margin: 0 2em 2em 0;
+}
+
+.view-portfolio .views-row {
+  clear: both;
+}
+
 .field-name-field-skills {
-  line-height: 1.6em;
-  margin: 1em 0;
+  @extend %skills-list;
 }
 
 .field-name-field-portfolio-link {
+  text-align: right;
   a {
-    color: $foreground-color;
-    @include button($bg: $portfolio-color, $radius: $global-rounded);
-    &:after {
-      content: ">";
-      margin-left: 0.75em;
+    @include button-link($portfolio-color);
+  }
+}
+
+.view-portfolio .views-field-view-node {
+  a {
+    @include button-link($portfolio-color, $button-font-size: 0.9em);
+    .skills-section & {
+      @include button-link($skills-color, $button-font-size: 0.9em);
     }
   }
 }

@@ -1,0 +1,10 @@
+/**
+ * @file
+ * Styles for resume page.
+ */
+.skill-group {
+  @extend %skills-list;
+  .field-label {
+    font-weight: bold;
+  }
+}

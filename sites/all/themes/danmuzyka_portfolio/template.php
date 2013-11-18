@@ -61,6 +61,27 @@ function danmuzyka_portfolio_preprocess_page(&$variables, $hook) {
     $header_classes[] = 'with-site-name';
   }
   $variables['header_classes'] = !empty($header_classes) ? ' ' . implode($header_classes, ' ') : '';
+
+  // Control breadcrumbs for taxonomy terms
+  if (in_array('page__taxonomy', $variables['theme_hook_suggestions'])) {
+    $term = menu_get_object('taxonomy_term', 2);
+    if ($term->vocabulary_machine_name === 'skills') {
+      $current = (object) array(
+        'tid' => $term->tid,
+      );
+      $breadcrumb = array();
+      while ($parents = taxonomy_get_parents($current->tid)) {
+        $current = array_shift($parents);
+        $breadcrumb[] = l($current->name, 'taxonomy/term/' . $current->tid);
+      }
+      array_pop($breadcrumb);
+      $breadcrumb[] = l(t('Skills'), 'skills');
+      $breadcrumb[] = l(t('Home'), NULL);
+      $breadcrumb = array_reverse($breadcrumb);
+      drupal_set_breadcrumb($breadcrumb);
+    }
+  }
+
 }
 // */
 
@@ -124,8 +145,10 @@ function danmuzyka_portfolio_preprocess_region(&$variables, $hook) {
  * @param $hook
  *   The name of the template being rendered ("block" in this case.)
  */
-/* -- Delete this line if you want to use this function
 function danmuzyka_portfolio_preprocess_block(&$variables, $hook) {
+  if ($variables['block']->delta === 'skills-block_1') {
+    $variables['classes_array'][] = 'block-skills';
+  }
   // Add a count to all the blocks in the region.
   // $variables['classes_array'][] = 'count-' . $variables['block_id'];
 
@@ -184,5 +207,21 @@ function danmuzyka_portfolio_field__field_skills($variables) {
   $output = '<div class="' . $variables['classes'] . '"' . $variables['attributes'] . '>' . $output . '</div>';
 
   return $output;
+}
+
+/**
+ * Modify the skills view block.
+ */
+function danmuzyka_portfolio_preprocess_views_view_unformatted(&$variables, $hook) {
+  if (($variables['view']->name === 'skills') && ($variables['view']->current_display === 'block_1')) {
+    $final_iteration = count($variables['rows']) - 1;
+    $count = 0;
+    foreach ($variables['rows'] as $id => $row) {
+      if ($count < $final_iteration) {
+        $variables['rows'][$id] = trim($row) . ', ';
+      }
+      $count++;
+    }
+  }
 }
 // */
