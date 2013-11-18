@@ -67,6 +67,8 @@ stylesheets[all][] = css/styles.css
 ; Optionally add some JavaScripts to your theme.
 
 scripts[] = js/vendor/custom.modernizr.js
+scripts[] = js/foundation/foundation.js
+scripts[] = js/foundation/foundation.topbar.js
 scripts[] = js/script.js
 
 

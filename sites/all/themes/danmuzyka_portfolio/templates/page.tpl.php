@@ -35,6 +35,41 @@
   </header>
 
   <div id="main">
+    <?php if (!$is_front): ?>
+      <nav id="navigation">
+
+        <?php if ($main_menu): ?>
+          <nav id="main-menu" class="top-bar" data-options="is_hover:false" role="navigation" tabindex="-1">
+            <ul class="title-area">
+              <li class="name"><h2><?php print $section_name; ?></h2></li>
+              <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+            </ul>
+            <section class="top-bar-section">
+              <?php
+              // This code snippet is hard to modify. We recommend turning off the
+              // "Main menu" on your sub-theme's settings form, deleting this PHP
+              // code block, and, instead, using the "Menu block" module.
+              // @see https://drupal.org/project/menu_block
+              print theme('links__system_main_menu', array(
+                'links' => $main_menu,
+                'attributes' => array(
+                  'class' => array('links', 'inline', 'clearfix', 'left'),
+                ),
+                'heading' => array(
+                  'text' => t('Main menu'),
+                  'level' => 'h2',
+                  'class' => array('element-invisible'),
+                ),
+              )); ?>
+            </section>
+          </nav>
+        <?php endif; ?>
+
+        <?php print render($page['navigation']); ?>
+
+      </nav>
+    <?php endif; ?>
+
     <?php print $breadcrumb; ?>
 
     <div id="content" class="content" role="main">
@@ -66,35 +101,6 @@
         <?php print $sidebar_first; ?>
         <?php print $sidebar_second; ?>
       </aside>
-    <?php endif; ?>
-
-    <?php if (!$is_front): ?>
-      <nav id="navigation">
-
-        <?php if ($main_menu): ?>
-          <nav id="main-menu" role="navigation" tabindex="-1">
-            <?php
-            // This code snippet is hard to modify. We recommend turning off the
-            // "Main menu" on your sub-theme's settings form, deleting this PHP
-            // code block, and, instead, using the "Menu block" module.
-            // @see https://drupal.org/project/menu_block
-            print theme('links__system_main_menu', array(
-              'links' => $main_menu,
-              'attributes' => array(
-                'class' => array('links', 'inline', 'clearfix'),
-              ),
-              'heading' => array(
-                'text' => t('Main menu'),
-                'level' => 'h2',
-                'class' => array('element-invisible'),
-              ),
-            )); ?>
-          </nav>
-        <?php endif; ?>
-
-        <?php print render($page['navigation']); ?>
-
-      </nav>
     <?php endif; ?>
 
   </div>

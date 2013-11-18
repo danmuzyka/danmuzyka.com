@@ -82,6 +82,14 @@ function danmuzyka_portfolio_preprocess_page(&$variables, $hook) {
     }
   }
 
+  $breadcrumb = drupal_get_breadcrumb();
+  if (count($breadcrumb) > 1) {
+    $variables['section_name'] = strip_tags($breadcrumb[1]);
+  }
+  else {
+    $variables['section_name'] = drupal_get_title();
+  }
+
 }
 // */
 

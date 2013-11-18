@@ -82,14 +82,14 @@ $zen-auto-include-item-base: false;
 .not-front {
   #main {
     ///* Move all the children of #main down to make room. */
-    padding-top: $nav-height;
+    //padding-top: $nav-height;
     position: relative;
   }
   #navigation {
     /* Move the navbar up inside #main's padding. */
-    position: absolute;
+    //position: absolute;
     top: 0;
-    height: $nav-height;
+    //height: $nav-height;
     padding: 0 $column-gutter / 2;
     //width: $zen-grid-width;
     width: 100%;

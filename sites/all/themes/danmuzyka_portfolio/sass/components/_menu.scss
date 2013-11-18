@@ -47,21 +47,65 @@
 }
 
 // Menu on inside pages
-nav#main-menu a {
-  @include button-link($primary-color, $button-font-size: 0.9em, $arrow: false, $button-style: "simple");
-  &.portfolio-section {
-    @include button-link($portfolio-color, $button-font-size: 0.9em, $arrow: false, $button-style: "simple");
+nav#main-menu {
+  h2 {
+    color: $foreground-color;
+    font-size: 2em;
+    margin: 0;
+    a {
+      color: $foreground-color;
+    }
   }
-  &.resume-section {
-    @include button-link($resume-color, $button-font-size: 0.9em, $arrow: false, $button-style: "simple");
+  .links {
+    a {
+      font-size: 1em;
+    }
+    a.portfolio-section {
+      background: $portfolio-color;
+    }
+    a.resume-section {
+      background: $resume-color;
+    }
+    a.skills-section {
+      background: $skills-color;
+    }
+    a.contact-section {
+      background: $contact-color;
+    }
   }
-  &.skills-section {
-    @include button-link($skills-color, $button-font-size: 0.9em, $arrow: false, $button-style: "simple");
-  }
-  &.contact-section {
-    @include button-link($contact-color, $button-font-size: 0.9em, $arrow: false, $button-style: "simple");
+  &.top-bar {
+    margin: 0;
+
+    .portfolio-section & {
+      background: $portfolio-color;
+    }
+    .resume-section & {
+      background: $resume-color;
+    }
+    .skills-section & {
+      background: $skills-color;
+    }
+    .contact-section & {
+      background: $contact-color;
+    }
   }
 }
+
+//nav#main-menu a {
+//  @include button-link($primary-color, $button-font-size: 0.9em, $arrow: false, $button-style: "simple");
+//  &.portfolio-section {
+//    @include button-link($portfolio-color, $button-font-size: 0.9em, $arrow: false, $button-style: "simple");
+//  }
+//  &.resume-section {
+//    @include button-link($resume-color, $button-font-size: 0.9em, $arrow: false, $button-style: "simple");
+//  }
+//  &.skills-section {
+//    @include button-link($skills-color, $button-font-size: 0.9em, $arrow: false, $button-style: "simple");
+//  }
+//  &.contact-section {
+//    @include button-link($contact-color, $button-font-size: 0.9em, $arrow: false, $button-style: "simple");
+//  }
+//}
 
 nav.breadcrumb {
   a {

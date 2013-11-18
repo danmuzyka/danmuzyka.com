@@ -161,6 +161,23 @@
       list-style-image: none;
     }
   }
+  .top-bar {
+    .links,
+    .menu {
+      li {
+        padding: 0;
+      }
+    }
+    &.expanded {
+      .links,
+      .menu {
+        li {
+          display: block;
+          float: none;
+        }
+      }
+    }
+  }
 }
 
 /**
