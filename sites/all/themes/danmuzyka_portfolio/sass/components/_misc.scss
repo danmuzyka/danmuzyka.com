@@ -866,3 +866,7 @@ input[type="submit"] {
     @include button-link($contact-color, $button-font-size: 0.9em);
   }
 }
+
+div.form-actions {
+  margin: 0.75em 0;
+}

@@ -119,6 +119,13 @@ nav.breadcrumb {
 .region-sidebar-first,
 .region-sidebar-second {
   @include grid-column($columns: false);
+  max-width: 100%;
+}
+
+.view-portfolio {
+  .views-row {
+    margin: 0 0 3em;
+  }
 }
 
 /**
@@ -198,6 +205,22 @@ nav.breadcrumb {
     /* Span 1 column, starting in 5th column from left. */
     .region-sidebar-second {
       @include grid-column($columns: 2);
+    }
+  }
+
+  /**
+   * Portfolio view styles.
+   */
+  .view-portfolio {
+    .views-row {
+      @include grid-row('nest');
+      margin: 0;
+      .views-field-field-portfolio-screenshot {
+        @include grid-column(5);
+      }
+      .portfolio-item-info {
+        @include grid-column(7);
+      }
     }
   }
 }

@@ -7399,13 +7399,19 @@ nav.breadcrumb {
   padding-left: 0.9375em;
   padding-right: 0.9375em;
   float: left;
+  max-width: 100%;
+}
+
+/* line 126, ../sass/layouts/_responsive.scss */
+.view-portfolio .views-row {
+  margin: 0 0 3em;
 }
 
 /**
  * Column layout for anything above mobile.
  */
 @media only screen and (min-width: 768px) {
-  /* line 130, ../sass/layouts/_responsive.scss */
+  /* line 137, ../sass/layouts/_responsive.scss */
   #header .logo {
     display: block;
     position: relative;
@@ -7414,7 +7420,7 @@ nav.breadcrumb {
     width: 16.66667%;
     float: left;
   }
-  /* line 134, ../sass/layouts/_responsive.scss */
+  /* line 141, ../sass/layouts/_responsive.scss */
   #header .header__name-and-slogan {
     position: relative;
     padding-left: 0.9375em;
@@ -7422,7 +7428,7 @@ nav.breadcrumb {
     width: 100%;
     float: left;
   }
-  /* line 138, ../sass/layouts/_responsive.scss */
+  /* line 145, ../sass/layouts/_responsive.scss */
   #header.with-logo.with-site-name .header__name-and-slogan {
     position: relative;
     padding-left: 0.9375em;
@@ -7434,11 +7440,11 @@ nav.breadcrumb {
   /**
    * The layout when there are no sidebars.
    */
-  /* line 147, ../sass/layouts/_responsive.scss */
+  /* line 154, ../sass/layouts/_responsive.scss */
   .no-sidebars {
     /* Span 10 columns, starting in 2nd column from left. */
   }
-  /* line 149, ../sass/layouts/_responsive.scss */
+  /* line 156, ../sass/layouts/_responsive.scss */
   .no-sidebars #content {
     position: relative;
     padding-left: 0.9375em;
@@ -7450,12 +7456,12 @@ nav.breadcrumb {
   /**
    * The layout when there is only one sidebar, the left one.
    */
-  /* line 157, ../sass/layouts/_responsive.scss */
+  /* line 164, ../sass/layouts/_responsive.scss */
   .sidebar-first {
     /* Span 10 columns, starting in 2nd column from left. */
     /* Span 2 columns, starting in 1st column from left. */
   }
-  /* line 159, ../sass/layouts/_responsive.scss */
+  /* line 166, ../sass/layouts/_responsive.scss */
   .sidebar-first #content {
     position: relative;
     padding-left: 0.9375em;
@@ -7465,7 +7471,7 @@ nav.breadcrumb {
     right: auto;
     float: left;
   }
-  /* line 164, ../sass/layouts/_responsive.scss */
+  /* line 171, ../sass/layouts/_responsive.scss */
   .sidebar-first .region-sidebar-first {
     position: relative;
     padding-left: 0.9375em;
@@ -7479,12 +7485,12 @@ nav.breadcrumb {
   /**
    * The layout when there is only one sidebar, the right one.
    */
-  /* line 172, ../sass/layouts/_responsive.scss */
+  /* line 179, ../sass/layouts/_responsive.scss */
   .sidebar-second {
     /* Span 10 columns, starting in 1st column from left. */
     /* Span 2 column, starting in 5th column from left. */
   }
-  /* line 174, ../sass/layouts/_responsive.scss */
+  /* line 181, ../sass/layouts/_responsive.scss */
   .sidebar-second #content {
     position: relative;
     padding-left: 0.9375em;
@@ -7492,7 +7498,7 @@ nav.breadcrumb {
     width: 75%;
     float: left;
   }
-  /* line 179, ../sass/layouts/_responsive.scss */
+  /* line 186, ../sass/layouts/_responsive.scss */
   .sidebar-second .region-sidebar-second {
     position: relative;
     padding-left: 0.9375em;
@@ -7504,13 +7510,13 @@ nav.breadcrumb {
   /**
    * The layout when there are two sidebars.
    */
-  /* line 187, ../sass/layouts/_responsive.scss */
+  /* line 194, ../sass/layouts/_responsive.scss */
   .two-sidebars {
     /* Span 3 columns, starting in 2nd column from left. */
     /* Span 1 column, starting in 1st column from left. */
     /* Span 1 column, starting in 5th column from left. */
   }
-  /* line 189, ../sass/layouts/_responsive.scss */
+  /* line 196, ../sass/layouts/_responsive.scss */
   .two-sidebars #content {
     position: relative;
     padding-left: 0.9375em;
@@ -7520,7 +7526,7 @@ nav.breadcrumb {
     right: auto;
     float: left;
   }
-  /* line 194, ../sass/layouts/_responsive.scss */
+  /* line 201, ../sass/layouts/_responsive.scss */
   .two-sidebars .region-sidebar-first {
     position: relative;
     padding-left: 0.9375em;
@@ -7530,12 +7536,52 @@ nav.breadcrumb {
     left: auto;
     float: left;
   }
-  /* line 199, ../sass/layouts/_responsive.scss */
+  /* line 206, ../sass/layouts/_responsive.scss */
   .two-sidebars .region-sidebar-second {
     position: relative;
     padding-left: 0.9375em;
     padding-right: 0.9375em;
     width: 16.66667%;
+    float: left;
+  }
+
+  /**
+   * Portfolio view styles.
+   */
+  /* line 215, ../sass/layouts/_responsive.scss */
+  .view-portfolio .views-row {
+    width: auto;
+    margin-left: -0.9375em;
+    margin-right: -0.9375em;
+    margin-top: 0;
+    margin-bottom: 0;
+    max-width: none;
+    *zoom: 1;
+    margin: 0;
+  }
+  /* line 121, ../../../../../../../../../Users/danmuzyka/.rvm/gems/ruby-1.9.3-p448@global/gems/zurb-foundation-4.3.1/scss/foundation/components/_global.scss */
+  .view-portfolio .views-row:before, .view-portfolio .views-row:after {
+    content: " ";
+    display: table;
+  }
+  /* line 122, ../../../../../../../../../Users/danmuzyka/.rvm/gems/ruby-1.9.3-p448@global/gems/zurb-foundation-4.3.1/scss/foundation/components/_global.scss */
+  .view-portfolio .views-row:after {
+    clear: both;
+  }
+  /* line 218, ../sass/layouts/_responsive.scss */
+  .view-portfolio .views-row .views-field-field-portfolio-screenshot {
+    position: relative;
+    padding-left: 0.9375em;
+    padding-right: 0.9375em;
+    width: 41.66667%;
+    float: left;
+  }
+  /* line 221, ../sass/layouts/_responsive.scss */
+  .view-portfolio .views-row .portfolio-item-info {
+    position: relative;
+    padding-left: 0.9375em;
+    padding-right: 0.9375em;
+    width: 58.33333%;
     float: left;
   }
 }
@@ -8758,6 +8804,11 @@ input[type="submit"]:after {
   margin-left: 0.75em;
 }
 
+/* line 870, ../sass/components/_misc.scss */
+div.form-actions {
+  margin: 0.75em 0;
+}
+
 /**
  * @file
  * Print styling
@@ -9572,20 +9623,15 @@ nav.breadcrumb a {
  * Styles for portfolio nodes.
  */
 /* line 6, ../sass/components/_portfolio.scss */
-.views-field-field-portfolio-screenshot,
+.views-field-field-portfolio-screenshot a,
 .field-name-field-portfolio-screenshot {
   border: 1px solid #CCC;
   -webkit-box-shadow: #333333 0.125em 0.125em 0.25em;
   -moz-box-shadow: #333333 0.125em 0.125em 0.25em;
   box-shadow: #333333 0.125em 0.125em 0.25em;
+  display: block;
   margin: 1em 0 2em;
   padding: 0.5em;
-}
-
-/* line 13, ../sass/components/_portfolio.scss */
-.views-field-field-portfolio-screenshot {
-  float: left;
-  margin: 0 2em 2em 0;
 }
 
 /* line 18, ../sass/components/_portfolio.scss */

@@ -2,17 +2,17 @@
  * @file
  * Styles for portfolio nodes.
  */
-.views-field-field-portfolio-screenshot,
+.views-field-field-portfolio-screenshot a,
 .field-name-field-portfolio-screenshot {
   border: 1px solid #CCC;
   @include box-shadow(#333 0.125em 0.125em 0.25em);
+  display: block;
   margin: 1em 0 2em;
   padding: 0.5em;
 }
 
 .views-field-field-portfolio-screenshot {
-  float: left;
-  margin: 0 2em 2em 0;
+  //margin: 0 2em 2em 0;
 }
 
 .view-portfolio .views-row {
