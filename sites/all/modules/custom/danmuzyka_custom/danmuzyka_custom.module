@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * Implements hook_node_view_alter().
+ */
+function danmuzyka_custom_node_view_alter(&$build) {
+  if ($build['#bundle'] === 'portfolio_item') {
+    $url = isset($build['field_portfolio_link']['#items'][0]['url']) ? $build['field_portfolio_link']['#items'][0]['url'] : '';
+    if (!empty($url) && isset($build['field_portfolio_screenshot'][0]['#path'])) {
+      $build['field_portfolio_screenshot'][0]['#path'] = array(
+        'path' => $url,
+      );
+    }
+  }
+}

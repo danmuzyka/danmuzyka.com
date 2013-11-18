@@ -1,0 +1,7 @@
+name = DanMuzyka.com custom code.
+description = Misc custom code for www.danmuzyka.com
+core = 7.x
+package = Custom
+php = 5.2.4
+version = 7.x-1.0
+project = danmuzyka_custom
