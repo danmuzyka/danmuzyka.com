@@ -1,0 +1,6 @@
+<?php
+/**
+ * @file
+ */
+
+include_once('text_formats.features.inc');

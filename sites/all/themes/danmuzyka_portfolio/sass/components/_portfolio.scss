@@ -1,0 +1,26 @@
+/**
+ * @file
+ * Styles for portfolio nodes.
+ */
+.field-name-field-portfolio-screenshot {
+  border: 1px solid #CCC;
+  @include box-shadow(#333 0.125em 0.125em 0.25em);
+  margin: 1em 0 2em;
+  padding: 0.5em;
+}
+
+.field-name-field-skills {
+  line-height: 1.6em;
+  margin: 1em 0;
+}
+
+.field-name-field-portfolio-link {
+  a {
+    color: $foreground-color;
+    @include button($bg: $portfolio-color, $radius: $global-rounded);
+    &:after {
+      content: ">";
+      margin-left: 0.75em;
+    }
+  }
+}
