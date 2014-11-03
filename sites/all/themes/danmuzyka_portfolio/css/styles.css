@@ -8458,9 +8458,17 @@ tr.selected td {
  * Custom styles.
  */
 /**
- * Lists
+ * iFrames
  */
 /* line 837, ../sass/components/_misc.scss */
+iframe {
+  max-width: 100%;
+}
+
+/**
+ * Lists
+ */
+/* line 842, ../sass/components/_misc.scss */
 ul, ol {
   padding: 0 0 0 1em;
 }
@@ -8468,22 +8476,22 @@ ul, ol {
 /**
  * Links
  */
-/* line 845, ../sass/components/_misc.scss */
+/* line 850, ../sass/components/_misc.scss */
 .portfolio-section a {
   color: #3369ff;
 }
 
-/* line 851, ../sass/components/_misc.scss */
+/* line 856, ../sass/components/_misc.scss */
 .resume-section a {
   color: #ff5c33;
 }
 
-/* line 857, ../sass/components/_misc.scss */
+/* line 862, ../sass/components/_misc.scss */
 .skills-section a {
   color: #0d2c82;
 }
 
-/* line 863, ../sass/components/_misc.scss */
+/* line 868, ../sass/components/_misc.scss */
 .contact-section a {
   color: #599900;
 }
@@ -8491,7 +8499,7 @@ ul, ol {
 /**
  * Buttons
  */
-/* line 871, ../sass/components/_misc.scss */
+/* line 876, ../sass/components/_misc.scss */
 input[type="submit"] {
   color: #dedede;
   font-size: 0.9em;
@@ -8555,7 +8563,7 @@ input[type="submit"]:after {
   content: ">";
   margin-left: 0.75em;
 }
-/* line 873, ../sass/components/_misc.scss */
+/* line 878, ../sass/components/_misc.scss */
 .portfolio-section input[type="submit"] {
   color: #dedede;
   font-size: 0.9em;
@@ -8619,7 +8627,7 @@ input[type="submit"]:after {
   content: ">";
   margin-left: 0.75em;
 }
-/* line 876, ../sass/components/_misc.scss */
+/* line 881, ../sass/components/_misc.scss */
 .resume-section input[type="submit"] {
   color: #dedede;
   font-size: 0.9em;
@@ -8683,7 +8691,7 @@ input[type="submit"]:after {
   content: ">";
   margin-left: 0.75em;
 }
-/* line 879, ../sass/components/_misc.scss */
+/* line 884, ../sass/components/_misc.scss */
 .skills-section input[type="submit"] {
   color: #dedede;
   font-size: 0.9em;
@@ -8747,7 +8755,7 @@ input[type="submit"]:after {
   content: ">";
   margin-left: 0.75em;
 }
-/* line 882, ../sass/components/_misc.scss */
+/* line 887, ../sass/components/_misc.scss */
 .contact-section input[type="submit"] {
   color: #dedede;
   font-size: 0.9em;
@@ -8812,7 +8820,7 @@ input[type="submit"]:after {
   margin-left: 0.75em;
 }
 
-/* line 887, ../sass/components/_misc.scss */
+/* line 892, ../sass/components/_misc.scss */
 div.form-actions {
   margin: 0.75em 0;
 }

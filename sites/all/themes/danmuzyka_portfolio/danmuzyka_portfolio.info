@@ -69,6 +69,7 @@ stylesheets[all][] = css/styles.css
 scripts[] = js/vendor/custom.modernizr.js
 scripts[] = js/foundation/foundation.js
 scripts[] = js/foundation/foundation.topbar.js
+scripts[] = js/responsive-iframes.js
 scripts[] = js/script.js
 
 
