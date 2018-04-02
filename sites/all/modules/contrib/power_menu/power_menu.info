@@ -10,9 +10,9 @@ configure = admin/config/search/power_menu
 
 files[] = power_menu.admin.inc
 
-; Information added by drupal.org packaging script on 2013-10-15
-version = "7.x-2.0-beta4"
+; Information added by Drupal.org packaging script on 2014-11-05
+version = "7.x-2.0-beta5"
 core = "7.x"
 project = "power_menu"
-datestamp = "1381824070"
+datestamp = "1415199481"
 

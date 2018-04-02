@@ -197,9 +197,19 @@ function power_menu_ctools_render_alter($info, $page, $args, $contexts, $task, $
  * Implements hook_entity_view().
  */
 function power_menu_entity_view($entity, $type, $view_mode, $langcode) {
+  // TODO: Add aditional test, that the function is only called on the main entity. At the moment the function is called as many entities shown in full mode (e.g. comments on a full node view)
+  // Power menu sets active menu only on full or defined view modes and enabled handlers
+  $defined_view_modes = variable_get('power_menu_view_mode', 'full');
 
-  // Power menu sets active menu only on full node view and enabled handlers
-  if ($view_mode == 'full' && variable_get('power_menu_handlers_enabled', FALSE)) {
+  // Is it an array with multiple view modes
+  if (is_array($defined_view_modes)) {
+    $set_path = in_array($view_mode, $defined_view_modes) ? TRUE : FALSE;
+  }
+  else {
+    $set_path = ($view_mode == $defined_view_modes) ? TRUE : FALSE;
+  }
+
+  if ($set_path && variable_get('power_menu_handlers_enabled', FALSE)) {
     power_menu_set_path($entity, $type, $langcode);
   }
 }
@@ -226,6 +236,11 @@ function power_menu_set_path($entity, $type, $langcode) {
   if ($path == '<front>') {
     $path = variable_get('site_frontpage', 'node');
     menu_set_active_item($path);
+  }
+  elseif (preg_match('/^<[A-Za-z0-9]*>$/', $path)) {
+    // Do not set a path on special menu items like <nolink> ...
+    // This items mostly used on multiple menu-items and in this case
+    // Power Menu could/would activate the wrong.
   }
   else {
 
@@ -277,6 +292,9 @@ function power_menu_get_path($entity, $type, $defined_path = NULL, $use_cache = 
   if (!$path) {
     // Get the active menu item
     $router_item = menu_get_item($defined_path);
+    if (!$router_item) {
+      return $path;
+    }
     // Get the alias for given item to use
     $alias = drupal_get_path_alias($router_item['href']);
 
@@ -367,6 +385,12 @@ function power_menu_get_breadcrumbs($path) {
 
   if ($menu) {
     $tree = menu_tree_page_data($menu);
+
+    // Use translated menu items
+    if (function_exists('i18n_menu_localize_tree')) {
+      $tree = i18n_menu_localize_tree($tree);
+    }
+
     _power_menu_recurse_crumbs($tree, $path, $crumbs);
   }
 
@@ -383,9 +407,9 @@ function _power_menu_recurse_crumbs($tree, $path, &$crumbs, $above = array()) {
     }
     if ($menu_item['link']['link_path'] == $path) {
       foreach ($above as $trail_item) {
-        $crumbs[] = l($trail_item['link']['link_title'], $trail_item['link']['link_path']);
+        $crumbs[] = l($trail_item['link']['title'], $trail_item['link']['link_path']);
       }
-      $crumbs[] = l($menu_item['link']['link_title'], $menu_item['link']['link_path']);
+      $crumbs[] = l($menu_item['link']['title'], $menu_item['link']['link_path']);
       break;
     }
     if (is_array($menu_item['below'])) {
@@ -502,10 +526,7 @@ function power_menu_menu_delete($menu) {
 }
 
 /**
- * @param $menu_name
- * @param $mlid
- * @param $form
- * @param $form_state
+ * Add the power menu field entity to the given form.
  */
 function power_menu_add_fields_entity_fields($menu_name, $mlid, &$form, &$form_state) {
   // Create bundle name for the given menu name
@@ -542,8 +563,8 @@ function power_menu_add_fields_entity_fields($menu_name, $mlid, &$form, &$form_s
 
       $entity = entity_create('power_menu_fields',
         array(
-             'menu_name' => $bundle_name,
-             'mlid' => $mlid,
+          'menu_name' => $bundle_name,
+          'mlid' => $mlid,
         )
       );
     }
@@ -553,6 +574,8 @@ function power_menu_add_fields_entity_fields($menu_name, $mlid, &$form, &$form_s
       $entity = reset($entity);
     }
 
+    // Set the correct parents for the attached field values, because they added to a fieldset
+    $form['#parents'] = array('power_menu', 'fields');
     // Add entity fields
     field_attach_form('power_menu_fields', $entity, $form['power_menu']['fields'], $form_state);
 
@@ -619,7 +642,7 @@ function power_menu_form_menu_edit_fields_submit($form, &$form_state) {
     // Unset the 'menu_name' because this is a value from the core menu field and overwrites in entity_form_submit_build_entity()
     // the power_menu_fields bundle name also called 'menu_name'!
     unset($form_state['values']['menu_name']);
-    entity_form_submit_build_entity('power_menu_fields', $entity, $form['power_menu']['fields'], $form_state);
+    entity_form_submit_build_entity('power_menu_fields', $entity, $form, $form_state);
     $entity->save();
 
     // Clear cache for given path or the default entry
@@ -628,6 +651,11 @@ function power_menu_form_menu_edit_fields_submit($form, &$form_state) {
     }
     elseif ($entity->mlid == 0) {
       cache_clear_all('fields:/', 'cache_power_menu');
+    }
+
+    // Clear cache for the defined menu link
+    if (isset($form_state['values']['mlid'])) {
+      cache_clear_all('fields:mlid:' . $form_state['values']['mlid'], 'cache_power_menu');
     }
 
     // Clear block cache
@@ -743,7 +771,7 @@ function power_menu_entity_info() {
  *   The entity or NULL is no entity found for the given path
  */
 function power_menu_get_fields_entity($path = NULL, $fallback = TRUE, $menu_name = 'main-menu') {
-  // Create used machine/bundle name for the given menu
+  $menu_name_orig = $menu_name;
   $menu_name = power_menu_create_machine_name($menu_name);
 
   // Is no path set, use the current sytsem path
@@ -781,6 +809,7 @@ function power_menu_get_fields_entity($path = NULL, $fallback = TRUE, $menu_name
       $query->leftJoin('menu_links', 'ml', 'pmf.mlid = ml.mlid');
       $id = $query->fields('pmf', array('id'))
         ->condition('ml.link_path', $lookup_path)
+        ->condition('ml.menu_name', $menu_name_orig)
         ->execute()->fetchField();
     }
 
@@ -959,7 +988,7 @@ function power_menu_get_fields_entity_id_by_menu($menu_name) {
 function power_menu_features_pipe_field_alter(&$pipe, $data, $export) {
   // Add a dependency to power_menu when Power Menu fields exported to Features
   foreach ($data as $identifier) {
-    if(strpos($identifier, 'power_menu_fields') === 0) {
+    if (strpos($identifier, 'power_menu_fields') === 0) {
       $pipe['dependencies'][] = 'power_menu';
       break;
     }
@@ -978,4 +1007,51 @@ function power_menu_features_pipe_field_alter(&$pipe, $data, $export) {
  */
 function power_menu_create_machine_name($value) {
   return $value = str_replace('-', '_', $value);
+}
+
+/**
+ * Implements hook_form_FORMID_alter().
+ *
+ * Append the menu-link info for the editors.
+ *
+ * We can't add additional columns to the taxonomy_overview_terms theme function and we
+ * don't want to "copy" the code to add an additional column. That's the reason why we
+ * add the information as additional markup to the term-name.
+ */
+function power_menu_form_taxonomy_overview_terms_alter(&$form, &$form_state) {
+
+  $show_info = variable_get('power_menu_taxonomy_show_menu_link_info', FALSE);
+  $vocabulary = variable_get('power_menu_taxonomy_vocabulary', array('vid' => NULL, 'machine_name' => NULL));
+
+  // Is it the defined navigation taxonomy
+  if($show_info && isset($form['#vocabulary']->vid) && $form['#vocabulary']->vid == $vocabulary['vid']) {
+
+    $terms = variable_get('power_menu_taxonomy_terms', array());
+
+    foreach ($form as &$value) {
+      if (is_array($value) && isset($value['#term']['name'])) {
+
+        $tid = $value['#term']['tid'];
+
+        if(array_key_exists($tid, $terms)) {
+
+          // Change the render array, that we can append additional information
+          $value['view']['link'] = $value['view'];
+          unset($value['view']['#type']);
+
+          $menu_link = menu_link_load($terms[$tid]);
+          $title = l($menu_link['link_title'], $menu_link['link_path']);
+          $title = strlen($title) != 0 ? $title : $menu_link['title'];
+
+          $options = array(
+            '!title' => $title,
+            '!edit' => l(t('edit'), 'admin/structure/menu/item/' . $menu_link['mlid'] . '/edit'),
+          );
+
+          $value['view']['menu_information']['#type'] = 'markup';
+          $value['view']['menu_information']['#markup'] = ' - ' . t('Associated menu link: !title (!edit)', $options);
+        }
+      }
+    }
+  }
 }

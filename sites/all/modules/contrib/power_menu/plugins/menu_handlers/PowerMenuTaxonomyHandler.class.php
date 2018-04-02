@@ -33,6 +33,27 @@ class PowerMenuTaxonomyHandler implements PowerMenuHandlerInterface {
       '#default_value' => $vocabulary['vid'],
     );
 
+    $form['power_menu_taxonomy']['create_term_always'] = array(
+      '#title' => t('Create always new terms'),
+      '#description' => t('Do always create a new term, also when a term with the name of the menu-item exists in the selected vocabulary.'),
+      '#type' => 'checkbox',
+      '#default_value' => variable_get('power_menu_taxonomy_create_term_always', FALSE),
+    );
+
+    $form['power_menu_taxonomy']['force_term_selection'] = array(
+      '#title' => t('Force term selection'),
+      '#description' => t('Always force the user to select a term or create a new one, on menu item creation or update.'),
+      '#type' => 'checkbox',
+      '#default_value' => variable_get('power_menu_taxonomy_force_term_selection', TRUE),
+    );
+
+    $form['power_menu_taxonomy']['show_menu_link_info'] = array(
+      '#title' => t('Show associated menu-link information'),
+      '#description' => t('Show the associated menu-link information on the term overview page.'),
+      '#type' => 'checkbox',
+      '#default_value' => variable_get('power_menu_taxonomy_show_menu_link_info', FALSE),
+    );
+
     return $form;
   }
 
@@ -47,8 +68,11 @@ class PowerMenuTaxonomyHandler implements PowerMenuHandlerInterface {
       'vid' => $vocabulary->vid,
       'machine_name' => $vocabulary->machine_name,
     );
-
     variable_set('power_menu_taxonomy_vocabulary', $vocabulary);
+
+    variable_set('power_menu_taxonomy_create_term_always', $form_state['values']['create_term_always']);
+    variable_set('power_menu_taxonomy_force_term_selection', $form_state['values']['force_term_selection']);
+    variable_set('power_menu_taxonomy_show_menu_link_info', $form_state['values']['show_menu_link_info']);
   }
 
   /**
@@ -123,8 +147,8 @@ class PowerMenuTaxonomyHandler implements PowerMenuHandlerInterface {
       $form['power_menu_taxonomy_create'] = array(
         '#type' => 'checkbox',
         '#title' => t('Create Taxonomy term'),
-        '#description' => t('The name of the taxonomy term is going to be the title of the menu link. Incase there is already a term with the same name
-        in the vocabulary \'%vocabulary\', it\'s not going to be created.', array('%vocabulary' => $vocabulary_name)),
+        '#default_value' => $menu_item_form['mlid']['#value'] == 0 ? TRUE : FALSE,
+        '#description' => t('The name of the taxonomy term is going to be the title of the menu link. When it\'s possible, the same hierarchy as the menu-item is used.' , array('%vocabulary' => $vocabulary_name)),
       );
 
       $form['power_menu_taxonomy_terms'] = array(
@@ -151,6 +175,13 @@ class PowerMenuTaxonomyHandler implements PowerMenuHandlerInterface {
    */
   public function menuFormValidate(array &$elements, array &$form_state, $form_id = NULL) {
 
+    // Check is a term selection or creation necessary
+    if(variable_get('power_menu_taxonomy_force_term_selection', TRUE)) {
+      if(empty($form_state['values']['power_menu_taxonomy_create']) && empty($form_state['values']['power_menu_taxonomy_terms'])) {
+        form_set_error('power_menu_taxonomy_create', t('Select \'Create Taxonomy term\' or select one from the existing terms.'));
+        form_set_error('power_menu_taxonomy_terms');
+      }
+    }
   }
 
   /**
@@ -160,8 +191,8 @@ class PowerMenuTaxonomyHandler implements PowerMenuHandlerInterface {
     $terms = variable_get('power_menu_taxonomy_terms', array());
     $vocabulary = variable_get('power_menu_taxonomy_vocabulary', array('vid' => NULL, 'machine_name' => NULL));
 
-    // Add new term if necessary
-    if ($vocabulary['vid'] !== NULL && $form_state['values']['power_menu_taxonomy_create']) {
+    // Add new term if create selected
+    if ($vocabulary['vid'] !== NULL && !empty($form_state['values']['power_menu_taxonomy_create'])) {
       // Does a term with this name exists
       $term_name = $form_state['values']['link_title'];
 
@@ -171,11 +202,21 @@ class PowerMenuTaxonomyHandler implements PowerMenuHandlerInterface {
         ->condition('t.vid', $vocabulary['vid'])
         ->execute()->fetchField();
 
-      if (!$term) {
+      if (!$term || variable_get('power_menu_taxonomy_create_term_always', FALSE)) {
 
         $term = new stdClass;
         $term->vid = $vocabulary['vid'];
         $term->name = $term_name;
+
+        // Build the hierarchy based on the parent menu-item -> term association when possible
+        if(!empty($form_state['values']['parent'])) {
+          $mlid = explode(':', $form_state['values']['parent']);
+          // Has the parent mlid an association to a term
+          $parent_term = array_search($mlid[1], $terms);
+          if($parent_term) {
+            $term->parent = $parent_term;
+          }
+        }
 
         // Save the term and add it to the selected terms
         taxonomy_term_save($term);
